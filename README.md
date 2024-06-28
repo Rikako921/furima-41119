@@ -6,15 +6,13 @@
 | ------------------ | ------ | ----------- |
 | name               | string | null: false |
 | email              | string | null: false, unique: true |
-| password           | string | null: false |
 | encrypted_password | string | null: false |
 | first_name         | string | null: false |
 | last_name          | string | null: false |
 | kanafirst_name     | string | null: false |
 | kanalast_name      | string | null: false |
-| birthday_year      | date | null: false |
-| birthday_month     | date | null: false |
-| birthday_days      | date | null: false |
+| birthday           | date   | null: false |
+
 
 
 ### Association
@@ -24,17 +22,17 @@
 
 ## posts テーブル
 
-| Column     | Type       | Options     |
-| ------     | ------     | ----------- |
-| title      | string     | null: false |
-| text       | text       | null: false |
-| category   | string     | null: false |
-| condition  | string     | null: false |
-| ship_charge | integer   | null: false |
-| ship_from  | string     | null: false |
-| ship_long  | integer    | null: false |
-| price      | integer    | null: false |
-| user_id    | references | null: false, foreign_key: true |
+| Column        | Type       | Options     |
+| ------        | ------     | ----------- |
+| title         | string     | null: false |
+| text          | text       | null: false |
+| category_id   | integer    | null: false |
+| condition_id  | integer    | null: false |
+| ship_charge_id| integer   | null: false |
+| ship_from_id  | integer    | null: false |
+| ship_long_id  | integer    | null: false |
+| price         | integer    | null: false |
+| user          | references | null: false, foreign_key: true |
 
 
 
@@ -49,8 +47,8 @@
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | comment | text       | null: false |
-| user_id | references | null: false, foreign_key: true |
-| post_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| post    | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -62,8 +60,8 @@
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| post_id | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
+| post | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -74,10 +72,12 @@
 
 | Column     |  Type      | Options                        |
 | -------    | ---------- | ------------------------------ |
+
 | post_code  | string     | null: false |
 | prefecture | string     | null: false |
 | city       | string     | null: false |
-| building   | string     | null: false |
+| street     | string     | null: false |
+| building   | string     |
 | tell_number| string     | null: false |
 | user_id    | references | null: false, foreign_key: true |
  
