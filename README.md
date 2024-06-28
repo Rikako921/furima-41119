@@ -27,7 +27,7 @@
 | Column        | Type       | Options     |
 | ------        | ------     | ----------- |
 | title         | string     | null: false |
-| text          | text       | null: false |
+| contents      | text       | null: false |
 | category_id   | integer    | null: false |
 | condition_id  | integer    | null: false |
 | ship_charge_id| integer   | null: false |
@@ -73,15 +73,15 @@
 
 ## arrived_at テーブル
 
-| Column     |  Type      | Options                        |
-| -------    | ---------- | ------------------------------ |
-| post_code  | string     | null: false                    |
-| prefecture | string     | null: false                    |
-| city       | string     | null: false                    |
-| street     | string     | null: false                    |
-| building   | string     |                                |
-| tell_number| string     | null: false                    |
-| user       | references | null: false, foreign_key: true |
+| Column       |  Type      | Options                        |
+| -------      | ---------- | ------------------------------ |
+| post_code    | string     | null: false                    |
+| prefecture_id| string     | null: false                    |
+| city         | string     | null: false                    |
+| street       | string     | null: false                    |
+| building     | string     |                                |
+| tell_number  | string     | null: false                    |
+| user         | references | null: false, foreign_key: true |
  
 
 ### Association
