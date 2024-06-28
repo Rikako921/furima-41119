@@ -19,7 +19,7 @@
 
 - has_many :comments
 - has_many :posts
-- has_money :boughts
+- has_many :boughts
 
 
 ## posts テーブル
