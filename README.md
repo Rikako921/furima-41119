@@ -19,6 +19,8 @@
 
 - has_many :comments
 - has_many :posts
+- has_one :bought
+
 
 ## posts テーブル
 
@@ -66,6 +68,7 @@
 ### Association
 
 - belongs_to :post
+- belongs_to :user
 - has_one :arrived_at
 
 ## arrived_at テーブル
@@ -77,9 +80,9 @@
 | prefecture | string     | null: false |
 | city       | string     | null: false |
 | street     | string     | null: false |
-| building   | string     |
+| building   | string     |             |
 | tell_number| string     | null: false |
-| user_id    | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
  
 
 ### Association
