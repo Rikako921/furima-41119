@@ -19,7 +19,7 @@
 
 - has_many :comments
 - has_many :posts
-- has_one :bought
+- has_money :boughts
 
 
 ## posts テーブル
@@ -62,8 +62,8 @@
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user | references | null: false, foreign_key: true |
-| post | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| post    | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -75,13 +75,12 @@
 
 | Column     |  Type      | Options                        |
 | -------    | ---------- | ------------------------------ |
-
-| post_code  | string     | null: false |
-| prefecture | string     | null: false |
-| city       | string     | null: false |
-| street     | string     | null: false |
-| building   | string     |             |
-| tell_number| string     | null: false |
+| post_code  | string     | null: false                    |
+| prefecture | string     | null: false                    |
+| city       | string     | null: false                    |
+| street     | string     | null: false                    |
+| building   | string     |                                |
+| tell_number| string     | null: false                    |
 | user       | references | null: false, foreign_key: true |
  
 
