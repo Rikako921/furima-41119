@@ -5,6 +5,13 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe 'ユーザー新規登録' do
+
+    context '新規登録できる場合' do
+      it '全ての値が存在していれば登録できる' do
+        expect(@user).to be_valid
+      end
+    end
+
     context '新規登録できない場合' do
     it 'nameが空では登録できない' do
       @user.name = ''
@@ -72,11 +79,15 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("First name can't be blank")
     end
 
-    it 'first_name,last_name(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      @user.last_name = 'lastname'
+    it 'first_name(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.first_name = 'firstname'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Last name is invalid', 'First name is invalid')
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+    it 'last_name(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.last_name = 'lastname'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name is invalid')
     end
 
     it 'kanalast_nameは、名字が空では登録できない' do
@@ -91,11 +102,15 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Kanafirst name can't be blank")
     end
 
-    it 'kanafirst_name,kanalast_nameは、全角（カタカナ）での入力が必須であること' do
-      @user.kanalast_name = 'やまだ'
+    it 'kanafirst_nameは、全角（カタカナ）での入力が必須であること' do
       @user.kanafirst_name = 'たろう'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Kanafirst name is invalid", "Kanalast name is invalid")
+      expect(@user.errors.full_messages).to include("Kanafirst name is invalid")
+    end
+    it 'kanalast_nameは、全角（カタカナ）での入力が必須であること' do
+      @user.kanalast_name = 'やまだ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Kanalast name is invalid")
     end
 
     it '生年月日が必須であること' do
@@ -103,6 +118,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
+
     end
   end
 end
