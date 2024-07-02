@@ -1,4 +1,26 @@
 class PostsController < ApplicationController
   def index
   end
+  
+  def new 
+    @post = Post.new
+    @categories = Category.all
+  end
+
+  def create
+    @post = Post.new(posts_params)
+    if @post.save
+      redirect_to '/'
+    else
+      render :new
+    end
+  end
+
+
+  private
+
+  def posts_params
+    params.require(:post).permit(:image, :title, :contents, :price, :category_id, :condition_id, :shipping_id, :prefecture_id, :schedule_id)
+  end
+
 end
