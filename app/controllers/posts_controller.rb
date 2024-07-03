@@ -14,9 +14,14 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to '/'
     else
-      render :new
-    end
+      render :new, status: :unprocessable_entity
+      end
   end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
 
 
   private
@@ -26,3 +31,4 @@ class PostsController < ApplicationController
   end
 
 end
+
