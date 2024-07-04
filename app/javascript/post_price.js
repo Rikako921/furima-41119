@@ -10,3 +10,4 @@ function pullDown() {
   });
 }
 window.addEventListener('load', pullDown)
+window.addEventListener('turbo:render', pullDown)
