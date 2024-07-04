@@ -90,6 +90,12 @@ RSpec.describe Post, type: :model do
         @post.valid?
         expect(@post.errors.full_messages).to include("Price is not a number")
       end
+      it 'userが紐付いていない場合は登録できない' do
+        @post.user = nil
+        @post.valid?
+        expect(@post.errors.full_messages).to include("User must exist")
+      end
+
     end
   end
 end
