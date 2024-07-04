@@ -9,5 +9,5 @@ function pullDown() {
     minusTaxDom.innerHTML = Math.floor(inputValue - addTaxDom.innerHTML);
   });
 }
-window.addEventListener('load', pullDown)
+window.addEventListener('turbo:load', pullDown)
 window.addEventListener('turbo:render', pullDown)
