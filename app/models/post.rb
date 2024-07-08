@@ -3,7 +3,10 @@ class Post < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping
+  belongs_to :prefecture
+  belongs_to :schedule
   belongs_to :user
+
   has_one_attached :image
 
   validates :title, presence: true
