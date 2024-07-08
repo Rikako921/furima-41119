@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
 def update
   if @post.update(posts_params)
-    redirect_to root_path
+    redirect_to post_path
   else
     render :edit, status: :unprocessable_entity
   end
