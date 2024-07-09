@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!,except: [:index, :show]
+  before_action :set_post, only: [:show, :edit, :update]
+  before_action :correct_user,only: [:edit, :update]
   def index
     @posts = Post.all.order("created_at DESC")
   end
@@ -19,15 +21,35 @@ class PostsController < ApplicationController
   end
 
   def show
-     @post = Post.find(params[:id])
   end
 
+  def edit
+  end
 
+def update
+  if @post.update(posts_params)
+    redirect_to post_path
+  else
+    render :edit, status: :unprocessable_entity
+  end
+end
 
   private
 
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
   def posts_params
     params.require(:post).permit(:image, :title, :contents, :price, :category_id, :condition_id, :shipping_id, :prefecture_id, :schedule_id)
+  end
+
+  def correct_user
+    if @post.user != current_user
+      redirect_to root_path
+    # else @post.sold_out?
+    #   redirect_to root_path
+    end
   end
 
 end
