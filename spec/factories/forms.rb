@@ -6,8 +6,6 @@ FactoryBot.define do
     street           { 'Test Street' }
     building         { 'Test Building' }
     tell_number      { '09012345678' }
-    user_id          { 1 }
-    post_id          { 1 }
     token {"tok_abcdefghijk00000000000000000"}
   end
 end

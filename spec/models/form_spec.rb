@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Form, type: :model do
   before do
-    @form = FactoryBot.build(:form)
+    user = FactoryBot.create(:user)
+    post = FactoryBot.create(:post)
+    @form = FactoryBot.build(:form, user_id: user.id, post_id: post.id)
     end
 
   describe '配送先情報の保存' do

@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :move_to_signed_in
+  before_action :set_post
+  before_action :set_gon_public_key, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @post = Post.find(params[:post_id])
     @form = Form.new
     if  @post.order.present? || current_user == @post.user
       redirect_to root_path
@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-  @post = Post.find(params[:post_id])
   @form = Form.new(form_params)
      if @form.valid? 
       pay_item
@@ -19,7 +18,6 @@ class OrdersController < ApplicationController
      @form.save
     redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     render :index, status: :unprocessable_entity
     end
   end
@@ -35,6 +33,13 @@ class OrdersController < ApplicationController
    )
   end
 
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  def set_gon_public_key
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+  end
 
   def form_params
   params.require(:form).permit(:postal_code, :prefecture_id, :city, :street, :building, :tell_number).merge(user_id: current_user.id, post_id: params[:post_id], token: params[:token])
@@ -42,7 +47,7 @@ class OrdersController < ApplicationController
 
   def move_to_signed_in
     unless user_signed_in?
-      redirect_to  root_path
+      redirect_to  new_user_session_path
     end
   end
 end
