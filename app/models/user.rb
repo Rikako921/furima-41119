@@ -11,6 +11,5 @@ class User < ApplicationRecord
          validates :kanalast_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
          validates :birthday, presence: true
          validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i}
-
-
+         
         end
